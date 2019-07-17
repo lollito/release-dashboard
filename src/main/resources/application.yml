@@ -1,0 +1,7 @@
+dashboard:
+  repositories-info:
+    - name: test-repo
+      path: /Users/test-repo
+      release: master
+      compare: develop
+    
