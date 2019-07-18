@@ -155,13 +155,7 @@
             	<script id="repository-info-template" type="text/x-handlebars-template">
 					{{#each info}}
 						<div class="col-xl-3 col-md-6 mb-4">
-							{{#if 'this.diffDays > 10'}}
-  								<div class="card border-left-danger shadow h-100 py-2">
-							{{else if 'this.diffDays > 5'}}
-  								<div class="card border-left-warning shadow h-100 py-2">
-							{{else}}
-  								<div class="card border-left-succes shadow h-100 py-2">
-							{{/if}}
+  							<div class="card border-left-{{this.status}} shadow h-100 py-2">
                 				<div class="card-body">
                   					<div class="row no-gutters align-items-center">
                     					<div class="col mr-2">

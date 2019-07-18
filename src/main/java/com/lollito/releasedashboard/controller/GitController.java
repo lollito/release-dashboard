@@ -44,7 +44,7 @@ public class GitController {
 			}
 		});
 		
-		response.sort(Comparator.comparing(RepositoryResponse::getDiffCommits));
+		response.sort(Comparator.comparing(RepositoryResponse::getDiffDays).reversed());
 		return response;
 	}
 	
@@ -76,9 +76,16 @@ public class GitController {
 		        
 		    }
 		}
-		long diffInMillies = Math.abs(repositoryResponse.getCompareDate().getTime() - repositoryResponse.getReleaseDate().getTime());
-		repositoryResponse.setDiffDays(TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS));
+		long diffInDays = TimeUnit.DAYS.convert(Math.abs(repositoryResponse.getCompareDate().getTime() - repositoryResponse.getReleaseDate().getTime()), TimeUnit.MILLISECONDS);
+		repositoryResponse.setDiffDays(diffInDays);
 		repositoryResponse.setDiffCommits(repositoryResponse.getCompareCommits() - repositoryResponse.getReleaseCommits());
+		String status = "success";
+		if(diffInDays > 10) {
+			status = "danger";
+		} else if(diffInDays > 5) {
+			status = "warning";
+		}
+		repositoryResponse.setStatus(status);
 		return repositoryResponse;
 	}
 }

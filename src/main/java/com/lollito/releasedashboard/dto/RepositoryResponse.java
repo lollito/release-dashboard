@@ -20,6 +20,8 @@ public class RepositoryResponse {
 	private Long diffCommits;
 	private Long diffDays;
 	
+	private String status;
+	
 	public String getName() {
 		return name;
 	}
@@ -90,6 +92,14 @@ public class RepositoryResponse {
 
 	public void setDiffDays(Long diffDays) {
 		this.diffDays = diffDays;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	
