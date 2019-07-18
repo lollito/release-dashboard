@@ -17,6 +17,9 @@ public class RepositoryResponse {
 	private Date compareDate;
 	private Long compareCommits;
 
+	private Long diffCommits;
+	private Long diffDays;
+	
 	public String getName() {
 		return name;
 	}
@@ -73,4 +76,21 @@ public class RepositoryResponse {
 		this.compareCommits = compareCommits;
 	}
 
+	public Long getDiffCommits() {
+		return diffCommits;
+	}
+
+	public void setDiffCommits(Long diffCommits) {
+		this.diffCommits = diffCommits;
+	}
+
+	public Long getDiffDays() {
+		return diffDays;
+	}
+
+	public void setDiffDays(Long diffDays) {
+		this.diffDays = diffDays;
+	}
+
+	
 }

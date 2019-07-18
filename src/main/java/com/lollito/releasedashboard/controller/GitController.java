@@ -3,7 +3,9 @@ package com.lollito.releasedashboard.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -42,6 +44,7 @@ public class GitController {
 			}
 		});
 		
+		response.sort(Comparator.comparing(RepositoryResponse::getDiffCommits));
 		return response;
 	}
 	
@@ -73,7 +76,9 @@ public class GitController {
 		        
 		    }
 		}
-		
+		long diffInMillies = Math.abs(repositoryResponse.getCompareDate().getTime() - repositoryResponse.getReleaseDate().getTime());
+		repositoryResponse.setDiffDays(TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS));
+		repositoryResponse.setDiffCommits(repositoryResponse.getCompareCommits() - repositoryResponse.getReleaseCommits());
 		return repositoryResponse;
 	}
 }
